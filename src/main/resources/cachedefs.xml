@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<root>
+
+<!-- List Cache
+	 key会与出啦className一起形成redis key
+ -->
+		<!-- all rows in item -->
+	<listcache name="listcache.item_all"
+		cacheType="LIST_CACHE"
+		className="model.Item"
+		sql="select id from item"
+		key=""
+		elementId="id"
+		maxListSize="-1"
+	/>
+	
+	<listcache name="listcache.item_zhou"
+		cacheType="LIST_CACHE"
+		className="model.Item"
+		sql="select id from item where name= ?"
+		key="name"
+		elementId="id"
+		maxListSize="-1"
+	/>
+</root>

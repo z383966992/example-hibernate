@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolbox>
+    <tool>
+        <key>URLDecoder</key>
+        <scope>application</scope>
+        <class>utils.URLDecoder</class>
+    </tool>
+    <tool>
+        <key>stringUtils</key>
+        <scope>application</scope>
+        <class>org.apache.commons.lang.StringUtils</class>
+    </tool>
+    <tool>
+        <key>stringEscapeUtils</key>
+        <scope>application</scope>
+        <class>org.apache.commons.lang.StringEscapeUtils</class>
+    </tool>
+    <tool>
+        <key>dateUtils</key>
+        <scope>application</scope>
+        <class>utils.DateUtils</class>
+    </tool>
+    
+</toolbox>

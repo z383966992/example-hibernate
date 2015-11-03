@@ -1,0 +1,36 @@
+<p>velocity 获得变量值</p>
+${test}
+
+#*
+<p>velocity 迭代list</p>
+#foreach($elem in $list)
+$velocityCount
+${elem.name}
+${elem.price}
+</br>
+#end
+*#
+
+<p>velocity 迭代map</p>
+#foreach($param in ${map.keySet()})
+$velocityCount
+${param}
+${map.get($param)}
+</br>
+#end
+
+<p>velocity 使用DataUtils</p>
+${date}</br>
+${dateUtils.format(${date})}
+
+<p>分页演示</p>
+总页数： ${page.totalPage}
+
+<p>分页内容(list迭代)</p>
+#foreach($elem in $page.contentList)
+$velocityCount
+${elem.id}
+${elem.name}
+${elem.price}
+</br>
+#end

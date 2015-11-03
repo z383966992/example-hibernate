@@ -1,0 +1,7 @@
+create table item(
+	id int(11) primary key auto_increment,
+	name varchar(50) default null,
+	price decimal(5,2) default null
+);
+
+alter table item add column order_num varchar(50) default '';

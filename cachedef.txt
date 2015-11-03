@@ -1,0 +1,98 @@
+
+	<listcache name="listcache.kbdeal_byuid"
+		cacheType="LIST_CACHE"
+		className="com.qike.pay.model.KbDeal"
+		sql="select id from kbdeal where uid=? "
+		key="uid"
+		elementId="id"
+		maxListSize="-1"
+	/>
+	<!-- get all services, used for show serviecs -->
+    <listcache name="listcache.service_all"
+		cacheType="LIST_CACHE"
+		className="com.qike.pay.model.Service"
+		sql="select id from service"
+		key=""
+		elementId="id"
+		maxListSize="-1"
+	/>
+	<!-- get all effective service, used for add discount -->	
+    <listcache name="listcache.service_effective"
+		cacheType="LIST_CACHE"
+		className="com.qike.pay.model.Service"
+		sql="select id from service where status = 0"
+		key=""
+		elementId="id"
+		maxListSize="-1"
+	/>	
+	<!-- get history service -->
+	    <listcache name="listcache.service_history"
+		cacheType="LIST_CACHE"
+		className="com.qike.pay.model.Service"
+		sql="select id from service where status = 1"
+		key=""
+		elementId="id"
+		maxListSize="-1"
+	/>	
+    <listcache name="listcache.userservice_uid"
+		cacheType="LIST_CACHE"
+		className="com.qike.pay.model.UserService"
+		sql="select id from user_service where uid=? and isexpired = 0"
+		key="uid"
+		elementId="id"
+		maxListSize="-1"
+	/>
+
+	<!-- get all not expired discounts  -->
+	<listcache name="listcache.discount_notexpired+itemType+itemId"
+		cacheType="LIST_CACHE"
+		className="com.qike.pay.model.Discount"
+		sql="select id from discount where isexpired = 0 and itemType = ? and itemId=?"
+		key="itemType+itemId"
+		elementId="id"
+		maxListSize="-1"
+	/>
+	
+	<!-- 折扣历史,所有已经过期的折扣 -->
+	<listcache name="listcache.failure_discount_all_with_ratio"
+		cacheType="LIST_CACHE"
+		className="com.qike.pay.model.Discount"
+		sql="select id from discount where ratio>0 and isexpired=1"
+		key=""
+		elementId="id"
+		maxListSize="-1"
+	/>
+	
+	<!-- 所有可用的折扣 -->
+	<listcache name="listcache.effective_discount_all_with_ratio+"
+		cacheType="LIST_CACHE"
+		className="com.qike.pay.model.Discount"
+		sql="select id from discount where ratio>0 and isexpired=0"
+		key=""
+		elementId="id"
+		maxListSize="-1"
+	/>
+	
+    <!-- Page Cache -->
+    
+
+
+    <!-- Mapped Cache -->
+
+	<!-- 账号与uid映射关系 -->
+	<mappedcache name="mappedcache.account_uid"
+		cacheType="MAPPED_CACHE"
+		sql="select id from account where uid=?"
+	/>
+	
+	<!-- 订单与 orderNum映射关系 -->
+	<mappedcache name="mappedcache.orderform_ordernum"
+		cacheType="MAPPED_CACHE"
+		sql="select id from orderform where ordernum=?"
+	/>
+	
+	<!-- get specific zero discount which is expired  -->
+	<mappedcache name="mappedcache.discount_zero"
+		cacheType="MAPPED_CACHE"
+		sql="select id from discount where itemtype = ? and itemid = ? and ratio = 0"
+	/>

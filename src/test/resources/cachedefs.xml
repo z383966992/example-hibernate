@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<root>
+
+<!-- List Cache
+	 key会与className一起形成redis key
+	 elementId是获得id的放射方法
+	 maxListSize用来控制list当中放入值的个数，-1无限制
+ -->
+		<!-- all rows in item -->
+	<listcache name="listcache.item_all"
+		cacheType="LIST_CACHE"
+		className="model.Item"
+		sql="select id from item"
+		key=""
+		elementId="id"
+		maxListSize="-1"
+	/>
+	
+	<listcache name="listcache.item_by_name"
+		cacheType="LIST_CACHE"
+		className="model.Item"
+		sql="select id from item where name= ?"
+		key="name"
+		elementId="id"
+		maxListSize="-1"
+	/>
+	
+	<listcache name="listcache.item_by_name_price"
+		cacheType="LIST_CACHE"
+		className="model.Item"
+		sql="select id from item where name= ? and price = ? "
+		key="name+price"
+		elementId="id"
+		maxListSize="-1"
+	/>
+	
+<!-- mappedcache -->	
+	<mappedcache name="mappedcache.orderNum_item"
+		cacheType="MAPPED_CACHE"
+		sql="select id from item where order_num = ?"
+	/>
+</root>

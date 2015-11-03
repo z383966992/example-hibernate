@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 	<bean id="parentDataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		abstract="true">
+		<property name="driverClassName" value="${mysql.jdbc.driver}" />
+	</bean> -->
+<!-- 
+	<bean id="parentDataSource"
+		class="org.apache.commons.dbcp.BasicDataSource"
+		abstract="true">
+		<property name="driverClassName" value="${mysql.jdbc.driver}" />
+		<property name="defaultAutoCommit" value="false" />
+		<property name="initialSize" value="4" />
+		<property name="maxActive" value="80" />
+		<property name="maxIdle" value="30" />
+		<property name="minIdle" value="4" />
+		<property name="maxWait" value="10000" />
+		<property name="testWhileIdle" value="true" />
+		<property name="validationQuery" value="select 1" />
+		<property name="testOnBorrow" value="false" />
+		<property name="numTestsPerEvictionRun" value="3" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="180" />
+		<property name="timeBetweenEvictionRunsMillis" value="30000" />
+		<property name="minEvictableIdleTimeMillis" value="1800000" />
+	</bean>
+	<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/exam?characterEncoding=utf8"/>
+			<property name="user" value="root"/>
+			<property name="password" value="root"/>
+ -->
+ 	<bean id="parentDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+			<property name="driverClass" value="com.mysql.jdbc.Driver"/>
+			<property name="initialPoolSize" value="1"/>
+			<property name="minPoolSize" value="1"/> 
+			<property name="maxPoolSize" value="5"/>
+			<property name="maxIdleTime" value="18000"/>
+			<property name="maxStatements" value="20"/>
+			<property name="autoCommitOnClose" value="false"/>
+			<property name="preferredTestQuery" value="SELECT 1"/>
+            <property name="idleConnectionTestPeriod" value="18000"/>
+            <property name="testConnectionOnCheckout" value="true"/>
+    </bean>
+ 
+	<bean id="masterDataSource" parent="parentDataSource">
+		<property name="jdbcUrl" value="${master.jdbc.url}" />
+		<property name="user" value="${master.jdbc.username}" />
+		<property name="password" value="${master.jdbc.password}" />
+	</bean>
+
+	<bean id="slaveDataSource" parent="parentDataSource">
+		<property name="jdbcUrl" value="${slave.jdbc.url}" />
+		<property name="user" value="${slave.jdbc.username}" />
+		<property name="password" value="${slave.jdbc.password}" />
+	</bean>
+
+	<bean id="dataSource" class="datasource.route.RoutingDataSource">
+		<property name="targetDataSources">
+			<map key-type="datasource.DataSourceType">
+				<entry key="MASTER" value-ref="masterDataSource" />
+				<entry key="SLAVE" value-ref="slaveDataSource" />
+			</map>
+		</property>
+		<property name="defaultTargetDataSource" ref="masterDataSource" />
+	</bean>
+
+</beans>
