@@ -1,4 +1,4 @@
-package test;
+package business.test;
 
 import java.util.List;
 
