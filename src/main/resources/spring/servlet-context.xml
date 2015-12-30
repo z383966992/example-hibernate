@@ -11,8 +11,7 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd 
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
-
-	<!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
+		<!-- To avoid IE AJAX, returns the download file JSON -->
 	<bean id="mappingJacksonHttpMessageConverter"
 		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
 		<property name="supportedMediaTypes">
@@ -22,7 +21,7 @@
 		</property>
 	</bean>
 	
-	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
+	<!-- Start the Spring MVC annotation function, complete mapping request and annotation POJO -->
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="messageConverters">
@@ -32,13 +31,13 @@
 		</property>
 	</bean>
 	
-	<!-- controller层解析 -->
+	<!-- Controller layer analysis -->
 	<mvc:annotation-driven/>
 	<mvc:default-servlet-handler />
 	<context:annotation-config />
 	<context:component-scan base-package="controller"/>
 
-	<!-- 该 BeanPostProcessor 将自动对标注 @Autowired 的 Bean 进行注入 -->
+	<!-- BeanPostProcessor will automatically injection mark @Autowired Bean  -->
 	<bean
 		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
 
@@ -87,7 +86,7 @@
 		</constructor-arg>
 	</bean>
 
-	<!-- spring 返回json -->
+	<!-- spring return json -->
 	<bean
 		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
 		<property name="defaultContentType" value="text/html;charset=UTF-8" />

@@ -49,7 +49,7 @@ public class ItemBusinessTest {
 	}
 	
 	@Test
-	@Ignore
+//	@Ignore
 	public void testInsert() {
 		try{
 			Item item = new Item();
@@ -131,7 +131,7 @@ public class ItemBusinessTest {
 	}
 	
 	@Test
-//	@Ignore
+	@Ignore
 	public void g() {
 		String orderNum = "20150511172224490079";
 		ResponsesDTO response = itemService.getFromOrderNum(orderNum);

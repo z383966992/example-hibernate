@@ -1,11 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-
 <root>
-
-<!-- List Cache
-	 key会与出啦className一起形成redis key
- -->
-		<!-- all rows in item -->
 	<listcache name="listcache.item_all"
 		cacheType="LIST_CACHE"
 		className="model.Item"

@@ -109,6 +109,16 @@ public class ItemController {
 		mv.setViewName("item/success");
 		return mv;
 	}
+	
+	/**
+	 * 简单的返回success
+	 */
+	@RequestMapping(value="/common")
+	public ModelAndView commonItem(HttpServletRequest request, HttpServletResponse reponse) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("item/success");
+		return mv;
+	}
 }
 
 

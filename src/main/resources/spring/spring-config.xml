@@ -11,8 +11,6 @@
 		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd"
 	default-lazy-init="false">
-
-	<!-- 读取配置文件 -->
 	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
@@ -23,8 +21,7 @@
 			</list>
 		</property>
 	</bean>
-
-
+	
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -37,9 +34,8 @@
 			</value>
 		</property>
 	</bean>
-
-	<!-- 启用对事务的注解支持 -->
-<!-- 	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<!-- enable annotation support for transactions -->
+<!-- <tx:annotation-driven transaction-manager="transactionManager"/>
 	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
@@ -50,12 +46,12 @@
 	<bean id="baseDao" class="dao.impl.BaseDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
-	
+
 	<bean id="cacheDefManager" class="cache.CacheDefManager" init-method="init">
 		<property name="cacheDefsFile" value="/cachedefs.xml" />
 	</bean>
 
-	<import resource="classpath:spring/spring-config-datasource-dbcp.xml" />
-	<import resource="classpath:spring/spring-aop.xml" />
-	<import resource="classpath:spring/spring-redis.xml" />
+	<import resource="classpath:spring/spring-config-datasource-dbcp.xml"/>
+	<import resource="classpath:spring/spring-aop.xml"/>
+	<import resource="classpath:spring/spring-redis.xml"/>
 </beans>
